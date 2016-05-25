@@ -1,0 +1,30 @@
+plugins {
+  id 'maven-publish'
+  id "ru.myweek-end.freemarker" version "0.0.0.6"
+}
+
+group = 'ru.myweek-end.gradle'
+version = "0.0.0.1"
+
+repositories {
+  mavenLocal()
+}
+
+dependencies {
+  freemarker 'ru.myweek-end.gradle:freemarker-example1:0.0.0.1:freemarker@tar.gz'
+  freemarker 'ru.myweek-end.gradle:freemarker-example2:0.0.0.1:freemarker@tar.gz'
+}
+
+tasks.freemarker {
+  group 'Build'
+
+  templates = files(
+    'test1.ftlh',
+    'test2.ftlh',
+  )
+  results = files(
+    'build/test1.txt',
+    'build/test2.txt'
+  )
+  model.put('user', 'Пользователь')
+}
